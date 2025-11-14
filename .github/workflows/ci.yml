@@ -1,14 +1,11 @@
-name: Prueba CI simple
-on: [push]
+name: Validación de JSON
+on:
+ pull_request:
+  branches: [main]
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clonar repositorio
-        uses: actions/checkout@v4
-
-      - name: Dar permisos al script
-        run: chmod +x test.sh
-
-      - name: Ejecutar test
-        run: ./test.sh
+ validar:
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v4
+    - name: Validar formato JSON
+      run: ./validate.sh
